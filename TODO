@@ -1,0 +1,38 @@
+test
+POST /api/logs/test
+	- Create the log collection "test" if it doesn't exist.
+	- Submit the log entry to a messaging system.
+
+Message Queue - Log entry
+	This is a simple work queue to process one log entry.
+	
+	- Send the log entry to an exchange that will in turn send it to any clients subscribed to the queue.
+	
+GET /
+	- Display a list of log collections.
+	
+	
++	Create a new service class for process log actions
+	LogService.queueMessage(LogMessage message)
+		- sends it to the queue
+		
+	LogService.processMessage(LogMessage message)
+		- processes a log message
+		
+		
+		
+IPN Handler
+
+Takes in a request to /ipn/
+	/ipn/
+1. Validates the call with a call back to paypal
+2. Saves the IPN in 
+
+
+
+LOG
+
+- Send request to /ipns from paypal's ipn test
+	- Localhost is using port 80, can't use 8080 because the router uses it, find out how to put a custom port in pom.xml for jetty.
+		http://puretech.paawak.com/2008/07/21/running-jetty-from-a-custom-port-through-maven/
+	
