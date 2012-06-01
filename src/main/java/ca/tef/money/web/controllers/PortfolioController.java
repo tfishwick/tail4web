@@ -36,24 +36,17 @@ public class PortfolioController {
 		return model;
 	}
 
-	@RequestMapping(value = "{portfolioId}", method = RequestMethod.GET)
-	public ModelAndView showPortfolio(@PathVariable("portfolioId") String portfolioId) {
-		System.out.println("show portfolio " + portfolioId);
-
-		Portfolio portfolio = portfolioService.findByName(portfolioId);
-		if (portfolio == null) {
-			return null;
-		}
-
-		ModelAndView model = new ModelAndView("portfolio");
-		model.addObject(portfolio);
-		return model;
-	}
-
 	@RequestMapping(value = "heatmap.html", method = RequestMethod.GET)
 	public ModelAndView showHeatmap() {
 		ModelAndView model = new ModelAndView("heatmap");
 		// model.addObject(portfolio);
+
+		return model;
+	}
+
+	@RequestMapping(value = "/websockets", method = RequestMethod.GET)
+	public ModelAndView showWebsockets() {
+		ModelAndView model = new ModelAndView("websockets");
 		return model;
 	}
 

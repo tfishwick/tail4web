@@ -1,3 +1,10 @@
+Command line options bootstrap the app
+	- global settings to all components/hosts are stored in the db.
+
+tail4web-pushit /var/log/messages --property=host:localhost --property= https://localhost:8880/data/messages
+
+tail -f /var/log/messages | tail4web-push
+
 test
 POST /api/logs/test
 	- Create the log collection "test" if it doesn't exist.
@@ -36,3 +43,24 @@ LOG
 	- Localhost is using port 80, can't use 8080 because the router uses it, find out how to put a custom port in pom.xml for jetty.
 		http://puretech.paawak.com/2008/07/21/running-jetty-from-a-custom-port-through-maven/
 	
+VERSION 0.1
+===========
+
++	create a web service that consumes a document on /data/{collectionName}
+
++	create a web page that tails a particular collection 
+	/ displays a list of collections, the total docs, and last doc date, clicking on it will begin a tail
+	
+	
+POST /data/{collectionName
+
+
+
+
+
+
+Create a rest service for a particular collection
+	- web service to queue the document to be saved
+	- worker to save the document to mongo, and then to resend it to a fanout queue in rabbit to be processed by anyone interested
+	- a worker listening to the fanout queue will listen to documents and send to any web client connected
+	- when a tail starts on the web, a worker connects to the fanout queue

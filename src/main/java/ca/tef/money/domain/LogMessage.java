@@ -1,17 +1,15 @@
 package ca.tef.money.domain;
 
-import java.io.Serializable;
+import java.util.HashMap;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class LogMessage implements Serializable {
+public class LogMessage extends HashMap<String, String> {
 	@Id
 	private ObjectId id;
-
-	private String message;
 
 	public ObjectId getId() {
 		return id;
@@ -21,12 +19,7 @@ public class LogMessage implements Serializable {
 		this.id = id;
 	}
 
-	public String getMessage() {
-		return message;
+	public String toString() {
+		return "[Document: id=" + id + "]";
 	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 }

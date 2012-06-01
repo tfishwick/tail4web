@@ -15,9 +15,9 @@
 	
 	<rabbit:admin connection-factory="amqpConnectionFactory" />
 	
-	<rabbit:queue name="ipns" id="queue" />
+	<rabbit:queue name="new_documents" id="queue" />
 	
-	<rabbit:template id="amqpTemplate" connection-factory="amqpConnectionFactory" queue="logs"/>
+	<rabbit:template id="amqpTemplate" connection-factory="amqpConnectionFactory" queue="new_documents"/>
 	
 
 </beans>

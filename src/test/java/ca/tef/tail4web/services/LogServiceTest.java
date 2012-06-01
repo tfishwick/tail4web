@@ -29,7 +29,6 @@ public class LogServiceTest {
 		// AmqpTemplate template = new RabbitTemplate(connectionFactory);
 
 		LogMessage logMessage = new LogMessage();
-		logMessage.setMessage("hello");
 		MessageProperties mp = new MessageProperties();
 		mp.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
 

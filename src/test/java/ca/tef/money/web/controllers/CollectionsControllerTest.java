@@ -3,7 +3,6 @@ package ca.tef.money.web.controllers;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
-import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,15 +22,10 @@ import ca.tef.tail4web.services.LogService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/app-config.xml")
-public class ApiControllerTest {
-
-	private static final Logger log = Logger.getLogger(ApiControllerTest.class);
+public class CollectionsControllerTest {
 
 	@Autowired
 	ApplicationContext applicationContext;
-
-	@Autowired
-	LogsController controller;
 
 	@Autowired
 	private RequestMappingHandlerAdapter handlerAdapter;
@@ -53,7 +47,7 @@ public class ApiControllerTest {
 	 */
 	@Test
 	public void testPostLogEntry() throws Exception {
-		request.setRequestURI("/api/logs/test");
+		request.setRequestURI("/collections/test");
 		request.setMethod("POST");
 
 		HandlerMethod handler = (HandlerMethod) handlerMapping.getHandler(request).getHandler();
@@ -62,12 +56,12 @@ public class ApiControllerTest {
 
 		handlerAdapter.handle(request, response, handler);
 
-		verify(controller.logService, atLeastOnce()).queueMessage(any(LogMessage.class));
+		verify(controller.logService, atLeastOnce()).saveAndQueue(any(LogMessage.class), "test");
 	}
 
 	@Test
 	public void testGetLogEntries() throws Exception {
-		request.setRequestURI("/api/logs/test");
+		request.setRequestURI("/collections/test");
 		request.setMethod("GET");
 
 		HandlerMethod handler = (HandlerMethod) handlerMapping.getHandler(request).getHandler();
@@ -80,7 +74,7 @@ public class ApiControllerTest {
 	}
 
 	ModelAndView doRequest(String method, String url) throws Exception {
-		request.setRequestURI("/api/logs/test");
+		request.setRequestURI("/collections/test");
 		request.setMethod("GET");
 
 		Object handler = handlerMapping.getHandler(request).getHandler();
