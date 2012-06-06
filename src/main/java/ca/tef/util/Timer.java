@@ -17,6 +17,10 @@ public class Timer {
 		return b + "s";
 	}
 
+	public void reset() {
+		start = System.currentTimeMillis();
+	}
+
 	public static long start() {
 		return System.currentTimeMillis();
 	}

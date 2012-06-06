@@ -49,8 +49,9 @@ VERSION 0.1
 +	create a web service that consumes a document on /data/{collectionName}
 
 +	create a web page that tails a particular collection 
-	/ displays a list of collections, the total docs, and last doc date, clicking on it will begin a tail
+	/ displays a list of collections in the database, the total docs, and last doc date, clicking on it will begin a tail
 	
+
 	
 POST /data/{collectionName
 

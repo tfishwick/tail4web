@@ -1,4 +1,4 @@
-package ca.tef.tail4web.services;
+package ca.tef.tail4web;
 
 import java.util.HashMap;
 import java.util.Map;

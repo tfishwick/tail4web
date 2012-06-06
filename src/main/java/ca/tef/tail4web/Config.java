@@ -1,4 +1,4 @@
-package ca.tef.tail4web.services;
+package ca.tef.tail4web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

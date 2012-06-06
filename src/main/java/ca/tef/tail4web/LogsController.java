@@ -1,17 +1,21 @@
-package ca.tef.money.web.controllers;
+package ca.tef.tail4web;
 
-import java.net.URLEncoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-
-import ca.tef.money.domain.*;
-import ca.tef.tail4web.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 
@@ -22,7 +26,7 @@ public class LogsController {
 	private static final Logger log = Logger.getLogger(LogsController.class);
 
 	@Autowired
-	LogService logService;
+	public LogService logService;
 
 	/**
 	 * Get a list of log messages for a given log collection.
@@ -66,5 +70,30 @@ public class LogsController {
 		logService.saveAndQueue(doc, collectionName);
 		JsonResponse response = new JsonResponse();
 		return response;
+	}
+
+	@RequestMapping(value = "/logs", method = RequestMethod.GET)
+	public ModelAndView showHeatmap() {
+
+		ModelAndView mov = new ModelAndView("logs");
+
+		// Add the list of document collections available to tail/view.
+		mov.addObject("collections", logService.findCollections());
+
+		return mov;
+	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView index() {
+		ModelAndView model = new ModelAndView("index");
+		model.addObject("collections", logService.findCollections());
+		return model;
+	}
+
+	@RequestMapping(value = "/{collectionName}", method = RequestMethod.GET)
+	public ModelAndView showWebsockets(@PathVariable String collectionName) {
+		ModelAndView model = new ModelAndView("tail");
+		model.addObject("collection", logService.findCollection(collectionName));
+		return model;
 	}
 }

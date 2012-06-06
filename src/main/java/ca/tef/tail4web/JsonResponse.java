@@ -1,4 +1,4 @@
-package ca.tef.money.web.controllers;
+package ca.tef.tail4web;
 
 import java.util.HashMap;
 import java.util.Map;

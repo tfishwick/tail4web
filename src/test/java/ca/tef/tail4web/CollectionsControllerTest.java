@@ -1,4 +1,4 @@
-package ca.tef.money.web.controllers;
+package ca.tef.tail4web;
 
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -16,9 +16,6 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-
-import ca.tef.money.domain.LogMessage;
-import ca.tef.tail4web.services.LogService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/app-config.xml")
