@@ -23,18 +23,18 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>8.1.4.v20120524</version>
 				<configuration>
-					
-<connectors>
-            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                <port>8080</port>
-            </connector>
-            <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-                <port>8443</port>
-                <keystore>keystore</keystore>
-                <keyPassword>password</keyPassword>
-                <password>password</password>
-            </connector>
-        </connectors>
+
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8080</port>
+						</connector>
+						<connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
+							<port>8443</port>
+							<keystore>keystore</keystore>
+							<keyPassword>password</keyPassword>
+							<password>password</password>
+						</connector>
+					</connectors>
 
 					<scanIntervalSeconds>1000</scanIntervalSeconds>
 					<webAppConfig>
