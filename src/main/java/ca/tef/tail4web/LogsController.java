@@ -34,8 +34,7 @@ public class LogsController {
 	@RequestMapping(value = "/collections/{collectionName}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public JsonResponse getLogCollection(@PathVariable String collectionName, HttpServletRequest request) {
-		Enumeration headers = request.getHeaderNames();
-		System.out.println("headers");
+		Enumeration<String> headers = request.getHeaderNames();
 		while (headers.hasMoreElements()) {
 			String h = (String) headers.nextElement();
 			System.out.println("\t" + h + " = " + request.getHeader(h));
@@ -70,17 +69,6 @@ public class LogsController {
 		logService.saveAndQueue(doc, collectionName);
 		JsonResponse response = new JsonResponse();
 		return response;
-	}
-
-	@RequestMapping(value = "/logs", method = RequestMethod.GET)
-	public ModelAndView showHeatmap() {
-
-		ModelAndView mov = new ModelAndView("logs");
-
-		// Add the list of document collections available to tail/view.
-		mov.addObject("collections", logService.findCollections());
-
-		return mov;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)

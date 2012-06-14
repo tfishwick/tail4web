@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<h2>Event Collections</h2>
+
 <ul>
 	<c:forEach items="${collections}" var="coll">
 		<li><a href="/${coll}">${coll}</a><br>
