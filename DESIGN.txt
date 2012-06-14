@@ -1,0 +1,57 @@
+
+CONFIG FILE
+	Environment variable - TAIL4WEB_CONFIG=tail4web.properties
+	
+	mongo.address
+	mongo.username
+	mongo.password
+	
+	tail4web.api = http://
+
+
+
+
+documents/
+
+_type: a string to identify the type of event, try to make it a FQCL. e.g., 
+_host
+
+
+
+Send me an alert if the following filter returns over 10 matches of the past hour.
+new Filter({
+	
+});
+
+addAlert(filter, 
+
+
+1) events are inserted directly into collections, or through a web interface
+2) EventProcessor::process(Event event) - called ASAP after an event is received.
+	- calls handle(Event) on all registered event handlers.
+
+
+Event lifecycle
+- inserted into a mongo capped collection
+
+
+- register EventHandler::
+
+Event
+
+
+EventProcessorThread
+	- for each capped collection
+		// Fetch the last document/event processed.
+		
+		// Make a tailable cursor for documents since the last processed.
+		
+		// For each document call all registered event plugins
+			
+		
+		
+		CollectionStatus status = eventProcessor.getLastStatus("logs");
+		status.getLastProcessedEventId()
+
+AlertEventPlugin extends EventPlugin
+	handle(Event event)
